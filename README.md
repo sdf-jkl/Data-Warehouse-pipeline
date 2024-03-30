@@ -1,5 +1,4 @@
 # Data-Warehouse-homework
-![96ECB8B3-8190-4758-87BF-7FA80EFEA0BA-scaled-e1662337267763](https://github.com/sdf-jkl/Data-Warehouse-homework/assets/33369833/66a443de-d5bf-477a-915a-ef08329f8869)
 ## Intro
 
 I decided to work on a NYC Data Collision Dataset because I want to get my drivers license soon and I thought it would be fun to explore different car crash statistics before I start driving.
