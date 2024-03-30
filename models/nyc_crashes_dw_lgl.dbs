@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project name="nyc_crashes_dw_lgl" id="LogicalDesign-339" database="LogicalDesign" >
-	<schema name="INSTANCE" catalogname="nyc_crashes_dw_lgl" >
+	<schema name="nyc_car_crashes_schema" catalogname="nyc_crashes_dw_lgl" >
 		<table name="dim_date" prior="Entity" >
 			<column name="date_id" type="INT" jt="4" mandatory="y" />
 			<column name="date_original_format" prior="DateOriginalFormat" type="DATETIME" jt="93" />
@@ -70,50 +70,50 @@
 			<index name="pk_facts_collisions" unique="PRIMARY_KEY" >
 				<column name="fact_id" />
 			</index>
-			<fk name="fk_facts_collisions_dim_date" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_date" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="date_id" pk="date_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_location" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_location" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_location" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_location" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="location_id" pk="location_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_factor" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_factor" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="factor1_id" pk="factor_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_factor_0" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_factor_0" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="factor2_id" pk="factor_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_factor_1" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_factor_1" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="factor3_id" pk="factor_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_factor_2" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_factor_2" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="factor4_id" pk="factor_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_factor_3" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_factor_3" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="factor5_id" pk="factor_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_vehicle" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_vehicle" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="vehicle1_id" pk="vehicle_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_vehicle_0" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_vehicle_0" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="vehicle2_id" pk="vehicle_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_vehicle_1" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_vehicle_1" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="vehicle3_id" pk="vehicle_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_vehicle_2" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_vehicle_2" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="vehicle4_id" pk="vehicle_id" />
 			</fk>
-			<fk name="fk_facts_collisions_dim_vehicle_3" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+			<fk name="fk_facts_collisions_dim_vehicle_3" virtual="y" to_schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
 				<fk_column name="vehicle5_id" pk="vehicle_id" />
 			</fk>
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout-2084" show_relation="columns" >
-		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="624" y="192" />
-		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_factor" color="C1D8EE" x="752" y="464" />
-		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="80" y="192" />
-		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_vehicle" color="C1D8EE" x="48" y="448" />
-		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="facts_collisions" color="C1D8EE" x="320" y="192" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_date" color="C1D8EE" x="624" y="192" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_factor" color="C1D8EE" x="752" y="464" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_location" color="C1D8EE" x="80" y="192" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_vehicle" color="C1D8EE" x="48" y="448" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="facts_collisions" color="C1D8EE" x="320" y="192" />
 		<callout x="144" y="48" pointer="Round" >
 			<comment><![CDATA[This is a layout - a diagram with tools.
 - Create new entities by right-clicking the layout. 
