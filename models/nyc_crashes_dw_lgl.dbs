@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="nyc_crashes_dw_lgl" id="LogicalDesign-339" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="nyc_crashes_dw_lgl" >
+		<table name="dim_date" prior="Entity" >
+			<column name="date_id" type="INT" jt="4" mandatory="y" />
+			<column name="date_original_format" prior="DateOriginalFormat" type="DATETIME" jt="93" />
+			<column name="date_iso_format" prior="DateISOFormat" type="DATETIME" jt="93" />
+			<column name="year" prior="Year" type="INT" jt="4" />
+			<column name="quarter" prior="Quarter" type="INT" jt="4" />
+			<column name="month" prior="Month" type="INT" jt="4" />
+			<column name="day" prior="Day" type="INT" jt="4" />
+			<column name="hour" prior="Hour" type="INT" jt="4" />
+			<column name="month_name" type="VARCHAR" length="100" jt="12" />
+			<column name="day_name" type="VARCHAR" length="100" jt="12" />
+			<column name="week_of_the_year" type="INT" jt="4" />
+			<column name="week_of_the_month" type="INT" jt="4" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+		</table>
+		<table name="dim_factor" prior="Entity" >
+			<column name="factor_id" type="INT" jt="4" mandatory="y" />
+			<column name="contributing_factor" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_dim_factor" unique="PRIMARY_KEY" >
+				<column name="factor_id" />
+			</index>
+		</table>
+		<table name="dim_location" prior="Entity" >
+			<column name="location_id" type="INT" jt="4" mandatory="y" />
+			<column name="borough" type="VARCHAR" length="15" jt="12" />
+			<column name="zipcode" type="INT" jt="4" />
+			<column name="latitude" prior="lattitude" type="DOUBLE" jt="8" />
+			<column name="longtitude" type="DOUBLE" jt="8" />
+			<column name="on_street_name" type="VARCHAR" length="100" jt="12" />
+			<column name="cross_street_name" type="VARCHAR" length="100" jt="12" />
+			<column name="off_street_name" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+		</table>
+		<table name="dim_vehicle" prior="Entity" >
+			<column name="vehicle_id" type="INT" jt="4" mandatory="y" />
+			<column name="vehicle_type" type="VARCHAR" length="255" jt="12" />
+			<index name="pk_dim_vehicle" unique="PRIMARY_KEY" >
+				<column name="vehicle_id" />
+			</index>
+		</table>
+		<table name="facts_collisions" prior="facts_" >
+			<column name="fact_id" prior="factid" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="number_persons_injured" prior="number_persons_killed" type="INT" jt="4" />
+			<column name="number_persons_killed" type="INT" jt="4" />
+			<column name="number_pedestrians_injured" type="INT" jt="4" />
+			<column name="number_pedestrians_killed" type="INT" jt="4" />
+			<column name="number_cyclists_injured" type="INT" jt="4" />
+			<column name="number_cyclists_killed" type="INT" jt="4" />
+			<column name="number_motorists_injured" type="INT" jt="4" />
+			<column name="number_motorists_killed" type="INT" jt="4" />
+			<column name="date_id" type="INT" jt="4" />
+			<column name="location_id" type="INT" jt="4" />
+			<column name="factor1_id" type="INT" jt="4" />
+			<column name="factor2_id" type="INT" jt="4" />
+			<column name="factor3_id" type="INT" jt="4" />
+			<column name="factor4_id" type="INT" jt="4" />
+			<column name="factor5_id" type="INT" jt="4" />
+			<column name="vehicle1_id" type="INT" jt="4" />
+			<column name="vehicle2_id" type="INT" jt="4" />
+			<column name="vehicle3_id" type="INT" jt="4" />
+			<column name="vehicle4_id" type="INT" jt="4" />
+			<column name="vehicle5_id" type="INT" jt="4" />
+			<index name="pk_facts_collisions" unique="PRIMARY_KEY" >
+				<column name="fact_id" />
+			</index>
+			<fk name="fk_facts_collisions_dim_date" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="date_id" pk="date_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_location" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_location" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="location_id" pk="location_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_factor" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="factor1_id" pk="factor_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_factor_0" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="factor2_id" pk="factor_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_factor_1" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="factor3_id" pk="factor_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_factor_2" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="factor4_id" pk="factor_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_factor_3" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_factor" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="factor5_id" pk="factor_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_vehicle" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="vehicle1_id" pk="vehicle_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_vehicle_0" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="vehicle2_id" pk="vehicle_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_vehicle_1" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="vehicle3_id" pk="vehicle_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_vehicle_2" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="vehicle4_id" pk="vehicle_id" />
+			</fk>
+			<fk name="fk_facts_collisions_dim_vehicle_3" virtual="y" to_schema="nyc_crashes_dw_lgl.INSTANCE" to_table="dim_vehicle" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="vehicle5_id" pk="vehicle_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-2084" show_relation="columns" >
+		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="624" y="192" />
+		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_factor" color="C1D8EE" x="752" y="464" />
+		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="80" y="192" />
+		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="dim_vehicle" color="C1D8EE" x="48" y="448" />
+		<entity schema="nyc_crashes_dw_lgl.INSTANCE" name="facts_collisions" color="C1D8EE" x="320" y="192" />
+		<callout x="144" y="48" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>
