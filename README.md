@@ -20,4 +20,6 @@ Else I separated into dimension tables of their own. \
 You can see how I did it here:
 ![image](https://github.com/sdf-jkl/Data-Warehouse-homework/assets/33369833/d6e2e284-5be4-4531-8252-54b5062abe66)
 
-Next step was to prepare schema. I used dbschema for this task.
+Next step was to prepare schema. I used dbschema for this task. \
+It looked like this.
+![image](https://github.com/sdf-jkl/Data-Warehouse-homework/assets/33369833/704cf652-5b41-4a7f-af8a-a151171eea30)
