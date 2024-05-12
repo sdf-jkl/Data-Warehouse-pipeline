@@ -23,3 +23,6 @@ Next step was to prepare schema. I used dbschema for this task. \
 It looked like this.
 <img width="959" alt="image" src="https://github.com/sdf-jkl/Data-Warehouse-pipeline/assets/33369833/9c52b496-4bc3-477a-aab8-8d99887c73d4">
 
+That's how it looked when deployed for snowflake.
+<img width="967" alt="image" src="https://github.com/sdf-jkl/Data-Warehouse-pipeline/assets/33369833/cee553b1-fd77-4854-8e3b-fc2fffd60bcd">
+
