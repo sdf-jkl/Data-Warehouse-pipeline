@@ -21,4 +21,5 @@ You can see how I did it here:
 
 Next step was to prepare schema. I used dbschema for this task. \
 It looked like this.
-![image](https://github.com/sdf-jkl/Data-Warehouse-homework/assets/33369833/704cf652-5b41-4a7f-af8a-a151171eea30)
+<img width="959" alt="image" src="https://github.com/sdf-jkl/Data-Warehouse-pipeline/assets/33369833/9c52b496-4bc3-477a-aab8-8d99887c73d4">
+
