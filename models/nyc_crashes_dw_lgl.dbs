@@ -3,7 +3,6 @@
 	<schema name="nyc_car_crashes_schema" catalogname="nyc_crashes_dw_lgl" >
 		<table name="dim_date" prior="Entity" >
 			<column name="date_id" type="INT" jt="4" mandatory="y" />
-			<column name="date_original_format" prior="DateOriginalFormat" type="DATETIME" jt="93" />
 			<column name="date_iso_format" prior="DateISOFormat" type="DATETIME" jt="93" />
 			<column name="year" prior="Year" type="INT" jt="4" />
 			<column name="quarter" prior="Quarter" type="INT" jt="4" />
@@ -30,7 +29,7 @@
 			<column name="borough" type="VARCHAR" length="15" jt="12" />
 			<column name="zipcode" type="INT" jt="4" />
 			<column name="latitude" prior="lattitude" type="DOUBLE" jt="8" />
-			<column name="longtitude" type="DOUBLE" jt="8" />
+			<column name="longitude" prior="longtitude" type="DOUBLE" jt="8" />
 			<column name="on_street_name" type="VARCHAR" length="100" jt="12" />
 			<column name="cross_street_name" type="VARCHAR" length="100" jt="12" />
 			<column name="off_street_name" type="VARCHAR" length="100" jt="12" />
@@ -109,17 +108,10 @@
 		</table>
 	</schema>
 	<layout name="Default Layout" id="Layout-2084" show_relation="columns" >
-		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_date" color="C1D8EE" x="624" y="192" />
-		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_factor" color="C1D8EE" x="752" y="464" />
-		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_location" color="C1D8EE" x="80" y="192" />
-		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_vehicle" color="C1D8EE" x="48" y="448" />
-		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="facts_collisions" color="C1D8EE" x="320" y="192" />
-		<callout x="144" y="48" pointer="Round" >
-			<comment><![CDATA[This is a layout - a diagram with tools.
-- Create new entities by right-clicking the layout. 
-- Double-click entity headers to edit.
-- For a better understanding of the schema, create multiple layouts.
-- Deploy the model into the database by converting it first to the physical design.]]></comment>
-		</callout>
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_date" color="C1D8EE" x="629" y="51" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_factor" color="C1D8EE" x="748" y="323" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_location" color="C1D8EE" x="85" y="51" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="dim_vehicle" color="C1D8EE" x="51" y="306" />
+		<entity schema="nyc_crashes_dw_lgl.nyc_car_crashes_schema" name="facts_collisions" color="C1D8EE" x="323" y="51" />
 	</layout>
 </project>
