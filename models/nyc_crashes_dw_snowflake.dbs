@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="nyc_crashes_dw_snowflake" id="Snowflake-1cd8" database="Snowflake" >
+	<schema name="NYC_CAR_CRASHES_SCHEMA" catalogname="nyc_crashes_dw_lgl" >
+		<table name="DIM_DATE" prior="dim_date" >
+			<column name="DATE_ID" prior="date_id" type="integer" jt="4" mandatory="y" />
+			<column name="DATE_ISO_FORMAT" prior="date_iso_format" type="datetime" jt="91" />
+			<column name="YEAR" prior="year" type="integer" jt="4" />
+			<column name="QUARTER" prior="quarter" type="integer" jt="4" />
+			<column name="MONTH" prior="month" type="integer" jt="4" />
+			<column name="DAY" prior="day" type="integer" jt="4" />
+			<column name="HOUR" prior="hour" type="integer" jt="4" />
+			<column name="MONTH_NAME" prior="month_name" type="varchar" length="100" jt="12" />
+			<column name="DAY_NAME" prior="day_name" type="varchar" length="100" jt="12" />
+			<column name="WEEK_OF_THE_YEAR" prior="week_of_the_year" type="integer" jt="4" />
+			<column name="WEEK_OF_THE_MONTH" prior="week_of_the_month" type="integer" jt="4" />
+			<index name="PK_DIM_DATE" unique="PRIMARY_KEY" >
+				<column name="DATE_ID" />
+			</index>
+		</table>
+		<table name="DIM_FACTOR" prior="dim_factor" >
+			<column name="FACTOR_ID" prior="factor_id" type="integer" jt="4" mandatory="y" />
+			<column name="CONTRIBUTING_FACTOR" prior="contributing_factor" type="varchar" length="255" jt="12" />
+			<index name="PK_DIM_FACTOR" unique="PRIMARY_KEY" >
+				<column name="FACTOR_ID" />
+			</index>
+		</table>
+		<table name="DIM_LOCATION" prior="dim_location" >
+			<column name="LOCATION_ID" prior="location_id" type="integer" jt="4" mandatory="y" />
+			<column name="BOROUGH" prior="borough" type="varchar" length="15" jt="12" />
+			<column name="ZIPCODE" prior="zipcode" type="integer" jt="4" />
+			<column name="LATITUDE" prior="latitude" type="double" jt="8" />
+			<column name="LONGITUDE" prior="LONGTITUDE" type="double" jt="8" />
+			<column name="ON_STREET_NAME" prior="on_street_name" type="varchar" length="100" jt="12" />
+			<column name="CROSS_STREET_NAME" prior="cross_street_name" type="varchar" length="100" jt="12" />
+			<column name="OFF_STREET_NAME" prior="off_street_name" type="varchar" length="100" jt="12" />
+			<index name="PK_DIM_LOCATION" unique="PRIMARY_KEY" >
+				<column name="LOCATION_ID" />
+			</index>
+		</table>
+		<table name="DIM_VEHICLE" prior="dim_vehicle" >
+			<column name="VEHICLE_ID" prior="vehicle_id" type="integer" jt="4" mandatory="y" />
+			<column name="VEHICLE_TYPE" prior="vehicle_type" type="varchar" length="255" jt="12" />
+			<index name="PK_DIM_VEHICLE" unique="PRIMARY_KEY" >
+				<column name="VEHICLE_ID" />
+			</index>
+		</table>
+		<table name="FACTS_COLLISIONS" prior="facts_collisions" >
+			<column name="FACT_ID" prior="fact_id" type="integer" jt="4" mandatory="y" />
+			<column name="NUMBER_PERSONS_INJURED" prior="number_persons_injured" type="integer" jt="4" />
+			<column name="NUMBER_PERSONS_KILLED" prior="number_persons_killed" type="integer" jt="4" />
+			<column name="NUMBER_PEDESTRIANS_INJURED" prior="number_pedestrians_injured" type="integer" jt="4" />
+			<column name="NUMBER_PEDESTRIANS_KILLED" prior="number_pedestrians_killed" type="integer" jt="4" />
+			<column name="NUMBER_CYCLISTS_INJURED" prior="number_cyclists_injured" type="integer" jt="4" />
+			<column name="NUMBER_CYCLISTS_KILLED" prior="number_cyclists_killed" type="integer" jt="4" />
+			<column name="NUMBER_MOTORISTS_INJURED" prior="number_motorists_injured" type="integer" jt="4" />
+			<column name="NUMBER_MOTORISTS_KILLED" prior="number_motorists_killed" type="integer" jt="4" />
+			<column name="DATE_ID" prior="date_id" type="integer" jt="4" />
+			<column name="LOCATION_ID" prior="location_id" type="integer" jt="4" />
+			<column name="FACTOR1_ID" prior="factor1_id" type="integer" jt="4" />
+			<column name="FACTOR2_ID" prior="factor2_id" type="integer" jt="4" />
+			<column name="FACTOR3_ID" prior="factor3_id" type="integer" jt="4" />
+			<column name="FACTOR4_ID" prior="factor4_id" type="integer" jt="4" />
+			<column name="FACTOR5_ID" prior="factor5_id" type="integer" jt="4" />
+			<column name="VEHICLE1_ID" prior="vehicle1_id" type="integer" jt="4" />
+			<column name="VEHICLE2_ID" prior="vehicle2_id" type="integer" jt="4" />
+			<column name="VEHICLE3_ID" prior="vehicle3_id" type="integer" jt="4" />
+			<column name="VEHICLE4_ID" prior="vehicle4_id" type="integer" jt="4" />
+			<column name="VEHICLE5_ID" prior="vehicle5_id" type="integer" jt="4" />
+			<index name="PK_FACTS_COLLISIONS" unique="PRIMARY_KEY" >
+				<column name="FACT_ID" />
+			</index>
+			<fk name="FK_FACTS_COLLISIONS_DIM_DATE" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_DATE" >
+				<fk_column name="DATE_ID" pk="DATE_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_LOCATION" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_LOCATION" >
+				<fk_column name="LOCATION_ID" pk="LOCATION_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_FACTOR" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_FACTOR" >
+				<fk_column name="FACTOR1_ID" pk="FACTOR_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_FACTOR_0" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_FACTOR" >
+				<fk_column name="FACTOR2_ID" pk="FACTOR_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_FACTOR_1" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_FACTOR" >
+				<fk_column name="FACTOR3_ID" pk="FACTOR_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_FACTOR_2" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_FACTOR" >
+				<fk_column name="FACTOR4_ID" pk="FACTOR_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_FACTOR_3" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_FACTOR" >
+				<fk_column name="FACTOR5_ID" pk="FACTOR_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_VEHICLE" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_VEHICLE" >
+				<fk_column name="VEHICLE1_ID" pk="VEHICLE_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_VEHICLE_0" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_VEHICLE" >
+				<fk_column name="VEHICLE2_ID" pk="VEHICLE_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_VEHICLE_1" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_VEHICLE" >
+				<fk_column name="VEHICLE3_ID" pk="VEHICLE_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_VEHICLE_2" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_VEHICLE" >
+				<fk_column name="VEHICLE4_ID" pk="VEHICLE_ID" />
+			</fk>
+			<fk name="FK_FACTS_COLLISIONS_DIM_VEHICLE_3" virtual="y" to_schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" to_table="DIM_VEHICLE" >
+				<fk_column name="VEHICLE5_ID" pk="VEHICLE_ID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-2125" confirmed="y" show_relation="columns" >
+		<entity schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" name="DIM_DATE" color="C1D8EE" x="629" y="51" />
+		<entity schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" name="DIM_FACTOR" color="C1D8EE" x="748" y="323" />
+		<entity schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" name="DIM_LOCATION" color="C1D8EE" x="85" y="51" />
+		<entity schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" name="DIM_VEHICLE" color="C1D8EE" x="51" y="306" />
+		<entity schema="nyc_crashes_dw_lgl.NYC_CAR_CRASHES_SCHEMA" name="FACTS_COLLISIONS" color="C1D8EE" x="323" y="51" />
+	</layout>
+</project>
