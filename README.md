@@ -98,8 +98,8 @@ I love Williamsburg and I love cycling. I'll try to not combine them.
 6. What are the main factors that cause car collisions?
 <img width="862" alt="image" src="assets/Heatmap.png">
 
-Driver inattention is the leading cause of car collisions, please try not to talk on your phone \
-even if on a speaker. Being distracted makes the collision change the same as if you were drunk. \
+Driver inattention is the leading cause of car collisions, please try not to talk on your phone even if on a speaker. \
+Being distracted makes the collision change the same as if you were drunk. \
 Be careful and don't cause misery for your or someone elses closed ones.
 
 
